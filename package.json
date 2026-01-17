@@ -1,0 +1,43 @@
+{
+  "name": "file-uploader",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/mihaib1/file-uploader#readme",
+  "bugs": {
+    "url": "https://github.com/mihaib1/file-uploader/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihaib1/file-uploader.git"
+  },
+  "license": "ISC",
+  "author": "Mihai Baiasu",
+  "type": "module",
+  "main": "script.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@quixo3/prisma-session-store": "^3.1.13",
+    "bcryptjs": "^3.0.3",
+    "bootstrap": "^5.3.8",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.2",
+    "fs": "^0.0.1-security",
+    "method-override": "^3.0.0",
+    "multer": "^2.0.2",
+    "node": "^24.12.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.16.3",
+    "prisma": "^7.2.0"
+  }
+}

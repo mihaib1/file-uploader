@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>Log In</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="display-3 mt-5">Log In</h3>
+        <form class="form-inline mt-5" action="/login" method="POST">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <button class="btn btn-success btn-lg" type="submit">Log In</button>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+        </form>
+        <% if (messages.error) { %>
+            <p></p>
+            <div class="alert alert-danger">
+                <%= messages.error[0] %>
+            </div>
+            <% } %>
+                <p class="mt-4">
+                    If you do not have an account, you can <a href="/register"
+                        class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">create
+                        one
+                        by clicking here</a>.
+                </p>
+    </div>
+</body>
+
+</html>

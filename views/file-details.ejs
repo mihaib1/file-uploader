@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>View Folder</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <% if(locals.file) { %>
+            <h1>
+                <b>File Name: </b>
+                <%= file.name %>
+            </h1>
+            <h1>
+                <b>Creation Date:</b>
+                <%= file.createdOn %>
+            </h1>
+            <% } %>
+    </div>
+
+</body>
+
+</html>

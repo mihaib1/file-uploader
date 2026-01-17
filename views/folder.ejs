@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>View Folder</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <% if(locals.folder) { %>
+            <h1>
+                <b>Folder Name: </b>
+                <%= folder.name %>
+            </h1>
+            <p>
+                <a href="/files/upload/<%=folder.id%>"><button class="btn btn-primary">Add file to this
+                        folder!</button></a>
+            </p>
+            <% if(locals.files && files.length> 0){ %>
+                <ul>
+                    <% files.forEach((file)=> { %>
+                        <li>
+                            <a href="/files/file/<%=file.id%>">
+                                <%= file.name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+
+                <% } else { %>
+                    <h1>There are no files in this folder.</h1>
+                    <% } %>
+                        <% } %>
+    </div>
+
+</body>
+
+</html>

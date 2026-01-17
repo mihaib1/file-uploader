@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>Folders Page</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="header">
+            <div class="row">
+                <% if(user) { %>
+                    <div class="col">
+                        <h1>Hello, <%= user.fullName %>! You can see a list of your folders below</h1>
+                    </div>
+                    <div class="col">
+                        <a href="create-folder"><button class="btn btn-success">Create a folder</button></a>
+                    </div>
+
+                    <div class="container-fluid d-flex flex-wrap gap-3 mt-5" style="margin-top: 3rem;">
+                        <% if(folders) { %>
+                            <% folders.forEach(function(folder){ %>
+                                <%- include("./partials/folder-card.ejs", {cardData: folder}) %>
+                                    <% }) %>
+                                        <% } %>
+                    </div>
+                    <% } else { %>
+                        <h1>Hello, user!</h1>
+                        <% } %>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

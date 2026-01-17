@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>Create Folder</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="display-3 mt-5">Create a new folder!</h3>
+        <form class="form-inline mt-5" action="/files/create-folder" method="POST">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="folderName">Folder Name: </label>
+                        <input type="folderName" name="folderName" id="folderName" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <button class="btn btn-success btn-lg" type="submit">Create Folder</button>
+                </div>
+                <div class="col"></div>
+            </div>
+        </form>
+        <p class="mt-4">
+            You can return to the user page <a href="/user-page"
+                class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">by
+                clicking here</a>.
+        </p>
+    </div>
+</body>
+
+</html>
