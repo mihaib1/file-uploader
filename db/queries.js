@@ -99,7 +99,8 @@ export class FilesActions {
                 data: {
                     createdBy: payload.userId,
                     folderId: payload.folderId,
-                    name: payload.name
+                    name: payload.name,
+                    url: payload.url
                 }
             });
             this.response.isSuccess = true;

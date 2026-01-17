@@ -9,6 +9,9 @@ let filesRouter = Router();
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         if(req.user){
+            console.log("file aici ");
+            console.log(file);
+            console.log("dupa file")
             const userId = req.user.id;
             const path = `/Users/mihaibaiasu/uploads/${userId}`;
             if(fs.existsSync(path)){
@@ -53,25 +56,31 @@ filesRouter.get("/upload/:folderId", async (req, res) => {
 const upload = multer({storage: storage});
 
 filesRouter.post("/upload", upload.single("file"), (req, res, next) => {
-
+    
     res.end();
 });
 
-filesRouter.post(
-  "/upload",
-  upload.single("file"),
-  async (req, res) => {
-      res.end();
+filesRouter.post("/upload", upload.single("file"), async (req, res) => {
+    console.log("upload fara fisier");
+    res.end();
   }
 );
 
-filesRouter.post(
-  "/upload/:folderId",
-  upload.single("file"),
-  async (req, res) => {
-      const folderId = req.params.folderId;
-      console.log("upload in fisier");
-      res.end();
+filesRouter.post("/upload/:folderId", upload.single("file"), async (req, res) => {
+    const folderId = Number(req.params.folderId);
+    const filePath = req.file.path;
+    const fileName = req.body.fileName
+    console.log("==== Starting file upload ====");
+    const fileUrl = await folderController.uploadFile(filePath);
+    const filePayload = {
+        userId: req.user.id,
+        folderId: folderId,
+        name: fileName,
+        url: fileUrl
+    }
+    const newFile = await folderController.addFile(filePayload);
+    console.log("==== Finished uploading file ====");
+    res.redirect("/files/view-folders");
   }
 );
 
@@ -87,8 +96,6 @@ filesRouter.get("/view-folders", async (req, res) => {
 });
 
 filesRouter.get("/create-folder", (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
     if(req.user){
         res.render("folder-form", {user: req.user});
     } else {

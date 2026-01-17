@@ -1,9 +1,25 @@
+import "dotenv/config";
 import { FilesActions } from "../db/queries.js";
 const filesActions = new FilesActions();
+
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({ 
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+    api_key: process.env.CLOUDINARY_API_KEY, 
+    api_secret: process.env.CLOUDINARY_API_SECRET
+}); 
 
 export default class FolderController {
     constructor(){
         this.response = {}
+    }
+
+    async uploadFile(path){
+        const result = await cloudinary.uploader.upload(path);
+        const fileUrl = await cloudinary.url(result.public_id)
+        console.log("fileUrl = ", fileUrl);
+        return fileUrl;
     }
 
     async getFileById(id){
@@ -44,9 +60,7 @@ export default class FolderController {
     async addFile(payload){
         if(payload){
             let newFile = await filesActions.createFile(payload);
-            this.response.newFile = newFile;
-            this.isSuccess = true;
-            return newFile;
+            return newFile.createdFile;
         }
         return [];
     }

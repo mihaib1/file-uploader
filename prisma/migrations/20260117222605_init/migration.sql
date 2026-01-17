@@ -5,8 +5,21 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
+    "fullName" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Folder" (
+    "id" SERIAL NOT NULL,
+    "createdOn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedOn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_by" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+
+    CONSTRAINT "Folder_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -14,7 +27,9 @@ CREATE TABLE "Files" (
     "id" SERIAL NOT NULL,
     "createdOn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "modifiedOn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "folder_id" INTEGER NOT NULL,
     "created_by" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
 
     CONSTRAINT "Files_pkey" PRIMARY KEY ("id")
 );
@@ -36,4 +51,10 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "Session_sid_key" ON "Session"("sid");
 
 -- AddForeignKey
+ALTER TABLE "Folder" ADD CONSTRAINT "Folder_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Files" ADD CONSTRAINT "Files_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_folder_id_fkey" FOREIGN KEY ("folder_id") REFERENCES "Folder"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -11,6 +11,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -43,6 +44,7 @@ model Files {
   folderId   Int      @map("folder_id")
   createdBy  Int      @map("created_by")
   name       String
+  url        String
 }
 
 model Session {
