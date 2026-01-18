@@ -14,10 +14,12 @@
             <div class="row">
                 <% if(user) { %>
                     <div class="col">
-                        <h1>Hello, <%= user.fullName %>! You can see a list of your folders below</h1>
+                        <h1>Hello, <%= user.fullName %>! You can see a list of your folders below.</h1>
                     </div>
-                    <div class="col">
-                        <a href="create-folder"><button class="btn btn-success">Create a folder</button></a>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <a href="create-folder"><button class="btn btn-success">Create a folder</button></a>
+                        </div>
                     </div>
 
                     <div class="container-fluid d-flex flex-wrap gap-3 mt-5" style="margin-top: 3rem;">
@@ -31,9 +33,10 @@
                         <h1>Hello, user!</h1>
                         <% } %>
             </div>
-
         </div>
-
+        <div class="mt-5">
+            <a href="/">Go to the home page.</a>
+        </div>
 
     </div>
 

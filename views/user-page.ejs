@@ -16,16 +16,22 @@
                     <div class="col">
                         <h1>Hello, <%= user.fullName %>!</h1>
                     </div>
-                    <div class="col">
-                        <a href="files/create-folder"><button class="btn btn-success">Create a folder</button></a>
-                        <a href="files/view-folders"><button class="btn btn-success">View Folders</button></a>
-                        <a href="/files/upload"><button class="btn btn-success">Add file</button></a>
-                        <form action="/logout?_method=DELETE" method="POST" class="mt-4">
+                    <div class="col mt-2">
+                        <form action="/logout?_method=DELETE" method="POST" class="">
                             <button type="submit" class="btn btn-danger">Log Out</button></a>
                         </form>
                     </div>
-
-
+                    <div class="row mt-5">
+                        <div class="col">
+                            <% if (foldersList && foldersList.length> 0) { %>
+                                <a href="files/view-folders"><button class="btn btn-success">View Folders</button></a>
+                                <% } else { %>
+                                    <a href="files/create-folder"><button class="btn btn-success">Create a
+                                            folder</button></a>
+                                    <% } %>
+                                        <a href="/files/upload"><button class="btn btn-success">Add file</button></a>
+                        </div>
+                    </div>
                     <% } else { %>
                         <h1>Hello, user! You are not logged in.</h1>
                         <% } %>

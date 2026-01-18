@@ -1,6 +1,9 @@
 import { Router } from "express";
 let indexRouter = Router();
 
+import FolderController from "../controllers/filesController.js";
+const folderController = new FolderController();
+
 import { ControllerActions } from "../controllers/registerController.js"
 import { LoginController } from "../controllers/loginController.js";
 const loginActions = new LoginController();
@@ -35,10 +38,9 @@ indexRouter.post("/register", async (req, res) => {
     }
 });
 
-
-
-indexRouter.get("/user-page", (req, res) => {
-    res.render("user-page", {user: req.user});
+indexRouter.get("/user-page", async (req, res) => {
+    const foldersList = await folderController.getFolderByUser(req.user.id);
+    res.render("user-page", {user: req.user, foldersList: foldersList});
 })
 
 export {indexRouter}

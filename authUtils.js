@@ -8,7 +8,6 @@ export class AuthenticationUtils {
 
     checkNotAuthenticated(req, res, next){
         if(req.isAuthenticated()){
-            console.log(req.user)
             return res.redirect(`/user-page`);
         }
         next();
@@ -16,9 +15,6 @@ export class AuthenticationUtils {
 
     checkAuthBeforeRegistering(req, res, next){
         if(req.isAuthenticated()){
-            console.log("User is already authenticated!");
-            console.log(req.isAuthenticated());
-            console.log(req.user)
             return res.render('user-page');
         } else {
             return res.render("register");

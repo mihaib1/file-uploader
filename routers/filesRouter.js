@@ -9,9 +9,6 @@ let filesRouter = Router();
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         if(req.user){
-            console.log("file aici ");
-            console.log(file);
-            console.log("dupa file")
             const userId = req.user.id;
             const path = `/Users/mihaibaiasu/uploads/${userId}`;
             if(fs.existsSync(path)){
@@ -29,11 +26,6 @@ const storage = multer.diskStorage({
         cb(null, uniquePrefix + file.originalname)
     }
 })
-
-/*filesRouter.get("/upload", (req, res) => {
-    console.log(req.params);
-    res.render("file-form");
-});*/
 
 filesRouter.get("/upload", (req, res) => {
     res.render("file-form", {
@@ -89,6 +81,9 @@ filesRouter.get("/view-folders", async (req, res) => {
         const foldersList = await folderController.getFolderByUser(req.user.id);
         if(foldersList && foldersList.length > 0){
             res.render("folders", {user: req.user, folders: foldersList});
+        } else {
+            console.log("The user does not have any folders!")
+            res.redirect("/");
         }
     } else {
         res.redirect("/");
@@ -128,11 +123,9 @@ filesRouter.get("/folder/:id", async (req, res) => {
 });
 
 filesRouter.get("/file/:id", async (req,res) => {
-    console.log("ajunge aici")
     const fileId = Number(req.params.id);
     const fileDetails = await folderController.getFileById(fileId);
-    console.log("fileDetails = ", fileDetails);
-    res.render("file-details", {file: fileDetails});
+    res.render("file-details", {file: fileDetails, user: req.user});
 })
 
 
