@@ -128,10 +128,13 @@ filesRouter.get("/folder/:id", async (req, res) => {
 });
 
 filesRouter.get("/file/:id", async (req,res) => {
+    console.log("ajunge aici")
     const fileId = Number(req.params.id);
     const fileDetails = await folderController.getFileById(fileId);
+    console.log("fileDetails = ", fileDetails);
     res.render("file-details", {file: fileDetails});
 })
+
 
 
 export {filesRouter}

@@ -10,15 +10,21 @@
 
 <body>
     <div class="container mt-5">
+        <h1>
+            <b>File Details Page</b>
+        </h1>
         <% if(locals.file) { %>
-            <h1>
+            <h3>
                 <b>File Name: </b>
                 <%= file.name %>
-            </h1>
-            <h1>
+            </h3>
+            <h3>
                 <b>Creation Date:</b>
                 <%= file.createdOn %>
-            </h1>
+            </h3>
+            <p><a href="<%=file.url%>"><button class="btn btn-success">View file</button></a></p>
+            <p><a href="/files/folder/<%=file.folderId%>"><button class="btn btn-primary">Go back to your
+                        folder.</button></a></p>
             <% } %>
     </div>
 
